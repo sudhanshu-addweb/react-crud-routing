@@ -1,0 +1,28 @@
+{
+  "posts": [
+    {
+      "title": "dfddd",
+      "body": "dsfsdf",
+      "id": 1
+    }
+  ],
+  "users": [
+    {
+      "name": "ddfdsfsd",
+      "username": "dsfsd",
+      "email": "sudhanshutaldar98@gmail.com",
+      "website": "fsdsd",
+      "phone": "sdfsd",
+      "street": "fsdsdf",
+      "suite": "sdfsdf",
+      "city": "fsdsdf",
+      "zipcode": "sdfsd",
+      "lat": "sdfsd",
+      "lng": "fdsd",
+      "companyName": "fsdsd",
+      "catchPhrase": "sfdsdf",
+      "bs": "fsdsfd",
+      "id": 1
+    }
+  ]
+}
