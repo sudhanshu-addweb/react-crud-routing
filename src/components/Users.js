@@ -159,17 +159,17 @@ function Users() {
         setName(item.name);
         setUsername(item.username);
         setEmail(item.email);
+        setStreet(item.address.street);
+        setSuite(item.address.suite);
+        setCity(item.address.city);
+        setZipcode(item.address.zipcode);
+        setLat(item.address.geo.lat);
+        setLng(item.address.geo.lng);
         setPhone(item.phone);
         setWebsite(item.website);
-        setStreet(item.street);
-        setSuite(item.suite);
-        setCity(item.city);
-        setZipcode(item.zipcode);
-        setLat(item.lat);
-        setLng(item.lng);
-        setCompanyName(item.companyName);
-        setCatchPhrase(item.catchPhrase);
-        setBs(item.bs);
+        setCompanyName(item.company.name);
+        setCatchPhrase(item.company.catchPhrase);
+        setBs(item.company.bs);
         setEditId(item.id)
         setIsEdit(true)
     }

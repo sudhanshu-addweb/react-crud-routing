@@ -2,8 +2,19 @@ import React from 'react'
 import Header from './Header'
 import { useState, useEffect } from 'react'
 import Axios from 'axios'
+//validation
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const schema = yup.object().shape({
+  name: yup.string().required(),
+  age: yup.number().required(),
+}).required();
+
 
 function Posts() {
+    const { register, handleSubmit, errors } = useForm();
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [isEdit, setIsEdit] = useState(false);
@@ -66,7 +77,7 @@ function Posts() {
     }
     //delete
     const deleteHandler = (item) => {
-        console.log(item, "s")
+        console.log(item, "item")
         Axios.delete(`http://localhost:3001/posts/${item}`)
             .then((res) => {
                 getData();
