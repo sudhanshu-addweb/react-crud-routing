@@ -34,7 +34,7 @@ function Users() {
         getData();
 
     }, [])
-    
+
     const getData = () => {
         fetch("http://localhost:3003/users")
             .then(res => res.json())
@@ -57,17 +57,23 @@ function Users() {
                 name: name,
                 username: username,
                 email: email,
-                website: website,
+                address: {
+                    street: street,
+                    suite: suite,
+                    city: city,
+                    zipcode: zipcode,
+                    geo: {
+                        lat: lat,
+                        lng: lng,
+                    }
+                },
                 phone: phone,
-                street: street,
-                suite: suite,
-                city: city,
-                zipcode: zipcode,
-                lat: lat,
-                lng: lng,
-                companyName: companyName,
-                catchPhrase: catchPhrase,
-                bs: bs
+                website: website,
+                company: {
+                    name: companyName,
+                    catchPhrase: catchPhrase,
+                    bs: bs
+                }
             })
                 .then((res) => {
                     setIsEdit(false)
@@ -96,17 +102,23 @@ function Users() {
                 name: name,
                 username: username,
                 email: email,
-                website: website,
+                address: {
+                    street: street,
+                    suite: suite,
+                    city: city,
+                    zipcode: zipcode,
+                    geo: {
+                        lat: lat,
+                        lng: lng,
+                    }
+                },
                 phone: phone,
-                street: street,
-                suite: suite,
-                city: city,
-                zipcode: zipcode,
-                lat: lat,
-                lng: lng,
-                companyName: companyName,
-                catchPhrase: catchPhrase,
-                bs: bs
+                website: website,
+                company: {
+                    name: companyName,
+                    catchPhrase: catchPhrase,
+                    bs: bs
+                }
             })
                 .then((res) => {
                     getData();
@@ -175,13 +187,13 @@ function Users() {
                         <div className="row">
                             <div className="col-md-4">
                                 <label for="Name">Enter Name:</label><br />
-                                <input type="text" required  onChange={(e) => setName(e.target.value)} id="Name" value={name} name="Name" /><br />
+                                <input type="text" required onChange={(e) => setName(e.target.value)} id="Name" value={name} name="Name" /><br />
                                 <label for="Username">Enter Username:</label><br />
-                                <input type="text" required  onChange={(e) => setUsername(e.target.value)} id="Username" value={username} name="Username" /><br />
+                                <input type="text" required onChange={(e) => setUsername(e.target.value)} id="Username" value={username} name="Username" /><br />
                                 <label for="Email">Enter Email:</label><br />
-                                <input type="email" required  onChange={(e) => setEmail(e.target.value)} id="Email" value={email} name="Email" /><br />
+                                <input type="email" required onChange={(e) => setEmail(e.target.value)} id="Email" value={email} name="Email" /><br />
                                 <label for="phone">Enter Phone:</label><br />
-                                <input type="text" required  onChange={(e) => setPhone(e.target.value)} id="Phone" value={phone} name="Phone" /><br />
+                                <input type="text" required onChange={(e) => setPhone(e.target.value)} id="Phone" value={phone} name="Phone" /><br />
                                 <label for="Website">Enter Website:</label><br />
                                 <input type="text" required onChange={(e) => setWebsite(e.target.value)} id="Website" value={website} name="Website" /><br />
                             </div>
@@ -223,7 +235,7 @@ function Users() {
                         }
                     </form>
                 </div>
-                
+
                 <ul>
                     {items.map(item => (
                         <li key={item.id}>
