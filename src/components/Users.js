@@ -36,7 +36,7 @@ function Users() {
     }, [])
 
     const getData = () => {
-        fetch("http://localhost:3003/users")
+        fetch("http://localhost:3001/users")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -53,7 +53,7 @@ function Users() {
     const submitHandler = (e) => {
         e.preventDefault()
         if (isEdit) {
-            Axios.put(`http://localhost:3003/users/${editId}`, {
+            Axios.put(`http://localhost:3001/users/${editId}`, {
                 name: name,
                 username: username,
                 email: email,
@@ -98,7 +98,7 @@ function Users() {
                     console.log(err)
                 })
         } else {
-            Axios.post("http://localhost:3003/users", {
+            Axios.post("http://localhost:3001/users", {
                 name: name,
                 username: username,
                 email: email,
@@ -146,7 +146,7 @@ function Users() {
     //delete
     const deleteHandler = (item) => {
         console.log(item, "s")
-        Axios.delete(`http://localhost:3003/users/${item}`)
+        Axios.delete(`http://localhost:3001/users/${item}`)
             .then((res) => {
                 getData();
             })
@@ -237,17 +237,20 @@ function Users() {
                 </div>
 
                 <ul>
-                    {items.map(item => (
-                        <li key={item.id}>
-                            <ul>
-                                <li>Name: {item.name}</li>
-                                <li>Email: {item.email}</li>
-                                <li>Username: {item.username}</li>
-                                <button onClick={() => { deleteHandler(item.id) }}><i class="material-icons">delete</i></button>
-                                <button onClick={() => { editHandler(item) }}><i class="material-icons">EDIT</i></button>
-                            </ul>
-                        </li>
-                    ))}
+                    {items.map((item, index) => {
+                        return (
+                            <li key={item.id}>
+                                <ul>
+                                    <li>ID: {index+1}</li>
+                                    <li>Name: {item.name}</li>
+                                    <li>Email: {item.email}</li>
+                                    <li>Username: {item.username}</li>
+                                    <button onClick={() => { deleteHandler(item.id) }}><i class="material-icons">delete</i></button>
+                                    <button onClick={() => { editHandler(item) }}><i class="material-icons">EDIT</i></button>
+                                </ul>
+                            </li>
+                        )
+                    })}
                 </ul>
             </>
         );

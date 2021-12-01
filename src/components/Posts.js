@@ -17,7 +17,7 @@ function Posts() {
 
     }, [])
     const getData = () => {
-        fetch("http://localhost:3003/posts")
+        fetch("http://localhost:3001/posts")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -30,11 +30,11 @@ function Posts() {
                 }
             )
     }
-    
+
     const submitHandler = (e) => {
         e.preventDefault()
         if (isEdit) {
-            Axios.put(`http://localhost:3003/posts/${editId}`, {
+            Axios.put(`http://localhost:3001/posts/${editId}`, {
                 title: title,
                 body: body
             })
@@ -46,10 +46,10 @@ function Posts() {
                     getData();
                 })
                 .catch((err) => {
-                    console.log(err) 
+                    console.log(err)
                 })
         } else {
-            Axios.post("http://localhost:3003/posts", {
+            Axios.post("http://localhost:3001/posts", {
                 title: title,
                 body: body
             })
@@ -67,7 +67,7 @@ function Posts() {
     //delete
     const deleteHandler = (item) => {
         console.log(item, "s")
-        Axios.delete(`http://localhost:3003/posts/${item}`)
+        Axios.delete(`http://localhost:3001/posts/${item}`)
             .then((res) => {
                 getData();
             })
@@ -100,23 +100,26 @@ function Posts() {
                         <input type="text" required onChange={(e) => setBody(e.target.value)} value={body} id="body" name="body" /><br />
                         {
                             isEdit ?
-                                <button type="submit" style={{backgroundColor:"aqua"}}>Update</button>
+                                <button type="submit" >Update</button>
                                 :
-                                <button type="submit" style={{backgroundColor:"green"}}>Submit</button>
+                                <button type="submit" >Submit</button>
                         }
                     </form>
                 </div>
                 <ul>
-                    {items.map(item => (
-                        <li key={item.id}>
-                            <ul>
-                                <li>TITLE :- {item.title}</li>
-                                <li>DESCRIPTION :- {item.body}</li>
-                                <button onClick={() => { deleteHandler(item.id) }} style={{backgroundColor:"red"}}><i class="material-icons">delete</i></button>
-                                <button onClick={() => { editHandler(item) }} style={{backgroundColor:"blue"}}><i class="material-icons">EDIT</i></button>
-                            </ul>
-                        </li>
-                    ))}
+                    {items.map((item, index) => {
+                        return (
+                            <li key={item.id}>
+                                <ul>
+                                    <li>ID :- {index + 1}</li>
+                                    <li>TITLE :- {item.title}</li>
+                                    <li>DESCRIPTION :- {item.body}</li>
+                                    <button onClick={() => { deleteHandler(item.id) }} ><i class="material-icons">delete</i></button>
+                                    <button onClick={() => { editHandler(item) }}><i class="material-icons">EDIT</i></button>
+                                </ul>
+                            </li>
+                        )
+                    })}
                 </ul>
             </>
         );
